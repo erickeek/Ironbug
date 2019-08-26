@@ -14,7 +14,7 @@ context.Truncate<YourTable>();
 
 ### BulkInert
 
-Insert data like a batch
+Insert batch data
 
 ```C#
 var context = new YourContext();
