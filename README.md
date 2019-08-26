@@ -3,7 +3,7 @@ Project with several features for C# projects
 
 ## IronBug.Context
 
-### TruncateTable
+### Truncate
 
 Truncate a table
 
