@@ -56,6 +56,21 @@ public class YourContext : DbContext
 }
 ```
 
+### RegisterAllTypeConfigurations
+
+Dynamically register all type configurations
+
+```C#
+public class YourContext : DbContext
+{    
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.RegisterAllTypeConfigurations(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
+    }
+}
+```
+
 ## IronBug.Pagination
 
 ### PagedList
