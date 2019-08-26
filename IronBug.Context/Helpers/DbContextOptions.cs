@@ -1,4 +1,4 @@
-﻿namespace IronBug.Context
+﻿namespace IronBug.Context.Helpers
 {
     public class DbContextOptions
     {

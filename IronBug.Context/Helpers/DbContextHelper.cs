@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace IronBug.Context
+namespace IronBug.Context.Helpers
 {
     public static class DbContextHelper
     {
@@ -38,6 +38,15 @@ namespace IronBug.Context
         public static void Truncate<TEntity>(this DbContext context) where TEntity : class
         {
             context.Database.ExecuteSqlCommand($"TRUNCATE TABLE {typeof(TEntity).Name}");
+        }
+
+        public static void DeleteAll<TEntity>(this DbContext context) where TEntity : class
+        {
+            var tableName = typeof(TEntity).Name;
+            context.Database.ExecuteSqlCommand(
+                $@"DELETE FROM {tableName}
+                DBCC CHECKIDENT ('{tableName}', reseed, 0)"
+            );
         }
     }
 }
