@@ -71,6 +71,54 @@ public class YourContext : DbContext
 }
 ```
 
+## IronBug.Helpers
+
+### AttributeHelper
+1. HasAttribute<>
+2. Attributes<>
+3. Attribute<>
+
+### BooleanHelper
+1. ToBoolean
+
+### DecimalHelper
+1. ToDecimal
+
+### DictionaryHelper
+1. AddRangeOverride
+2. AddRangeNewOnly
+3. AddRange
+4. GetValueOrDefault
+
+### EnumerableHelper
+1. Except
+2. AddRange
+3. RemoveRange
+4. Merge
+
+### EnumHelper
+1. GetValue
+2. Attribute<>
+3. DisplayName
+
+### FileHelper
+1. SaveToFile
+
+### IntHelper
+1. ToInt
+2. Clamp
+
+### StreamHelper
+1. ToByteArray
+
+### StringHelper
+1. Truncate
+
+### TypeHelper
+1. GetClassProperties
+2. IsClassValueType
+3. IsAssignableTo<>
+
 ## IronBug.Pagination
 
 ### PagedList
