@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="AttributeHelper.cs" />
     <Compile Include="BooleanHelper.cs" />
+    <Compile Include="DateTimeHelper.cs" />
     <Compile Include="DecimalHelper.cs" />
     <Compile Include="DictionaryHelper.cs" />
     <Compile Include="EnumerableComponents\FuncEqualityComparer.cs" />

@@ -81,6 +81,13 @@ public class YourContext : DbContext
 ### BooleanHelper
 1. ToBoolean
 
+### DateTimeHelper
+1. ToDateTime
+2. ToDateTimeOrNull
+3. GetFirstDayOfMonth
+4. GetLastDayOfMonth
+5. ToShortDateString
+
 ### DecimalHelper
 1. ToDecimal
 
@@ -102,7 +109,7 @@ public class YourContext : DbContext
 3. DisplayName
 
 ### FileHelper
-1. SaveToFile
+1. SaveToFile (Save byte[] into a file)
 
 ### IntHelper
 1. ToInt
@@ -113,6 +120,8 @@ public class YourContext : DbContext
 
 ### StringHelper
 1. Truncate
+2. ReplaceFirstOccurance (Replace first occurrence of a string)
+3. ReplaceLastOccurance (Replace last occurrence of a string)
 
 ### TypeHelper
 1. GetClassProperties
@@ -126,7 +135,7 @@ public class YourContext : DbContext
 Paged component
 
 ```C#
-public ActinoResult Index(QueryFilter filter)
+public ActionResult Index(QueryFilter filter)
 {
     var query = _context.Animals;
                 
