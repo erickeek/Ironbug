@@ -122,6 +122,8 @@ public class YourContext : DbContext
 1. Truncate
 2. ReplaceFirstOccurance (Replace first occurrence of a string)
 3. ReplaceLastOccurance (Replace last occurrence of a string)
+4. ToLowerFirstLetter (First letter in lowercase)
+5. ToUpperFirstLetter (First letter in uppercase)
 
 ### TypeHelper
 1. GetClassProperties
