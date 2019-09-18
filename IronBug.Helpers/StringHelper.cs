@@ -31,5 +31,23 @@ namespace IronBug.Helpers
             var startIndex = source.LastIndexOf(find, StringComparison.Ordinal);
             return startIndex > 0 ? source.Remove(startIndex, find.Length).Insert(startIndex, replace) : source;
         }
+
+        public static string ToLowerFirstLetter(this string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+            return input.Substring(0, 1).ToLower() + input.Substring(1);
+        }
+
+        public static string ToUpperFirstLetter(this string input, bool onlyFirstLetterUpper = true)
+        {
+            if (string.IsNullOrEmpty(input))
+                return string.Empty;
+
+            if (onlyFirstLetterUpper)
+                input = input.ToLower();
+
+            return input.Substring(0, 1).ToUpper() + input.Substring(1);
+        }
     }
 }
