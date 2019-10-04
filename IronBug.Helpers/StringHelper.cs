@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 
 namespace IronBug.Helpers
 {
@@ -48,6 +51,20 @@ namespace IronBug.Helpers
                 input = input.ToLower();
 
             return input.Substring(0, 1).ToUpper() + input.Substring(1);
+        }
+
+        public static string RemoveAccents(this string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return input;
+
+            var str = input.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder(input.Length);
+            foreach (var ch in str.Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark))
+            {
+                stringBuilder.Append(ch);
+            }
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }

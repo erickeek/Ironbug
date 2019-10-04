@@ -124,6 +124,7 @@ public class YourContext : DbContext
 3. ReplaceLastOccurance (Replace last occurrence of a string)
 4. ToLowerFirstLetter (First letter in lowercase)
 5. ToUpperFirstLetter (First letter in uppercase)
+6. RemoveAccents (Remove diacritics (accents) from a string)
 
 ### TypeHelper
 1. GetClassProperties
@@ -153,4 +154,43 @@ public ActionResult Index(QueryFilter filter)
 
     return View(pagedQuery);
 }
+```
+
+## IronBug.Web
+
+### IsDefinedInActionOrController
+
+Checks if an attribute is defined on an action or controller
+
+```C#
+[Authorize]
+public abstract class BaseController : Controller
+{
+	private bool IsRequestAuthorized(AuthorizationContext filterContext)
+	{
+		if (IsUserAuthenticated)
+			return true;
+
+		var descriptor = filterContext.ActionDescriptor;
+		var authorize = descriptor.IsDefinedInActionOrController<AuthorizeAttribute>();
+		var allowAnonymous = descriptor.IsDefinedInActionOrController<AllowAnonymousAttribute>();
+
+		return !authorize || allowAnonymous;
+	}
+```
+
+### ToJson
+
+HtmlHelper to convert an object to JSON
+
+```C#.cshtml
+@Html.ToJson(Model)
+```
+
+
+### ContentVersioned
+
+```C#.cshtml
+<script src="@Url.ContentVersioned("~/js/Client/service.js")"></script>
+<script src="@Url.ContentVersioned("~/js/Client/module.js")"></script>
 ```
