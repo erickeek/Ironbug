@@ -190,7 +190,15 @@ HtmlHelper to convert an object to JSON
 
 ### ContentVersioned
 
+This extension method appends the assembly version to end of path
+
 ```C#.cshtml
-<script src="@Url.ContentVersioned("~/js/Client/service.js")"></script>
-<script src="@Url.ContentVersioned("~/js/Client/module.js")"></script>
+<script src="@Url.ContentVersioned("~/js/service.js")"></script>
+<script src="@Url.ContentVersioned("~/js/module.js")"></script>
+```
+
+Which will be rendered like this:
+```xml
+<script src="/js/service.js?v=1.0.0.0"></script>
+<script src="/js/module.js?v=1.0.0.0"></script>
 ```
