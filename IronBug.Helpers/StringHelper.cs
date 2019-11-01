@@ -66,5 +66,10 @@ namespace IronBug.Helpers
             }
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
+
+        public static string Nl2Br(this string input)
+        {
+            return input.Replace("\r\n", "<br />").Replace("\n", "<br />");
+        }
     }
 }

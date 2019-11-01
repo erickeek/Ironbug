@@ -125,6 +125,7 @@ public class YourContext : DbContext
 4. ToLowerFirstLetter (First letter in lowercase)
 5. ToUpperFirstLetter (First letter in uppercase)
 6. RemoveAccents (Remove diacritics (accents) from a string)
+6. Nl2Br (A string extension method that newline 2 line break.)
 
 ### TypeHelper
 1. GetClassProperties
