@@ -21,5 +21,10 @@ namespace IronBug.Helpers
                 return defaultValue;
             }
         }
+
+        public static string ToString(this decimal? value, string format, string defaultValue = "")
+        {
+            return value == null ? defaultValue : value.Value.ToString(format);
+        }
     }
 }
