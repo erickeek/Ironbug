@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Helpers", "IronBug.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Web", "IronBug.Web\IronBug.Web.csproj", "{BA782DB1-8F04-4836-A951-D0D0F5D1334F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.DomainValidation", "IronBug.DomainValidation\IronBug.DomainValidation.csproj", "{324ACE96-D752-4C1E-9217-7E6879124A8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BA782DB1-8F04-4836-A951-D0D0F5D1334F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA782DB1-8F04-4836-A951-D0D0F5D1334F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA782DB1-8F04-4836-A951-D0D0F5D1334F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{324ACE96-D752-4C1E-9217-7E6879124A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324ACE96-D752-4C1E-9217-7E6879124A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324ACE96-D752-4C1E-9217-7E6879124A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324ACE96-D752-4C1E-9217-7E6879124A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -203,3 +203,59 @@ Which will be rendered like this:
 <script src="/js/service.js?v=1.0.0.0"></script>
 <script src="/js/module.js?v=1.0.0.0"></script>
 ```
+
+
+## IronBug.DomainValidation
+
+
+```C#
+public class UserMustBeAdmin : ISpecification
+{
+	private readonly User _user;
+
+	public UserMustBeAdmin(User user) => _user = user;
+
+	public bool IsSatisfiedBy() => _user.IsAdmin;
+
+	public string ErrorMessage() => "You are not allowed to access this area";
+}
+
+public class ProposalMustBelongToTheUser : ISpecification
+{
+	private readonly User _user;
+	private readonly Proposal _proposal;
+
+	public ProposalMustBelongToTheUser(User user, Proposal proposal)
+	{
+		_user = user;
+		_proposal = proposal;
+	}
+
+	public bool IsSatisfiedBy() => _proposal.IdUser = _user.Id;
+
+	public string ErrorMessage() => "This proposal does not belong to you";
+}
+
+
+public sealed class UserCanAccessProposal : Validator
+{
+	public UserCanAccessProposal(User user, Proposal proposal)
+	{
+		Add(new UserMustBeAdmin(user));
+		Add(new ProposalMustBelongToTheUser(user, proposal));
+	}
+}
+
+// ...
+
+public ActionResult Index(int id)
+{
+	// ...
+
+	var result = new UserCanAccessProposal(user, proposal).Validate();
+	if (!result.IsValid)
+		throw new Exception(result.Message);
+
+	// ...
+}
+```
