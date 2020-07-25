@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Security", "IronBug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Mappers", "IronBug.Mappers\IronBug.Mappers.csproj", "{10530254-C636-4B3B-95EB-9FD01F67F717}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Injection", "IronBug.Injection\IronBug.Injection.csproj", "{2B977D32-F7BB-42C8-924C-8B4A64BE7B03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.WebApi", "IronBug.WebApi\IronBug.WebApi.csproj", "{BBB5A96C-6502-4A7E-9463-09E21682C2BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{10530254-C636-4B3B-95EB-9FD01F67F717}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10530254-C636-4B3B-95EB-9FD01F67F717}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10530254-C636-4B3B-95EB-9FD01F67F717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B977D32-F7BB-42C8-924C-8B4A64BE7B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B977D32-F7BB-42C8-924C-8B4A64BE7B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B977D32-F7BB-42C8-924C-8B4A64BE7B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B977D32-F7BB-42C8-924C-8B4A64BE7B03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB5A96C-6502-4A7E-9463-09E21682C2BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB5A96C-6502-4A7E-9463-09E21682C2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB5A96C-6502-4A7E-9463-09E21682C2BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB5A96C-6502-4A7E-9463-09E21682C2BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
