@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.DomainValidation", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Security", "IronBug.Security\IronBug.Security.csproj", "{25A87B15-3831-4265-8917-6B4FD3489966}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Mappers", "IronBug.Mappers\IronBug.Mappers.csproj", "{10530254-C636-4B3B-95EB-9FD01F67F717}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{25A87B15-3831-4265-8917-6B4FD3489966}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25A87B15-3831-4265-8917-6B4FD3489966}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25A87B15-3831-4265-8917-6B4FD3489966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10530254-C636-4B3B-95EB-9FD01F67F717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10530254-C636-4B3B-95EB-9FD01F67F717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10530254-C636-4B3B-95EB-9FD01F67F717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10530254-C636-4B3B-95EB-9FD01F67F717}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
