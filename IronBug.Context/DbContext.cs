@@ -14,13 +14,15 @@ namespace IronBug.Context
 
         protected DbContext(string nameOrConnectionString) : base(nameOrConnectionString) { }
 
+        protected abstract Assembly ContextAssembly();
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add<MakeAllStringsNonUnicode>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Configurations.AddFromAssembly(ContextAssembly());
 
             base.OnModelCreating(modelBuilder);
         }
