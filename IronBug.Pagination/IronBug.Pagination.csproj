@@ -35,11 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PagedQuery.cs" />
-    <Compile Include="PaginationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryFilter.cs" />
-    <Compile Include="Sorter.cs" />
   </ItemGroup>
+  <Import Project="..\IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

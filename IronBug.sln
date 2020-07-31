@@ -23,7 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.WebApi", "IronBug.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Web.Bootstrap", "IronBug.Web.Bootstrap\IronBug.Web.Bootstrap.csproj", "{75B48CA5-2E68-428C-9203-11D400F53B91}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IronBug.Pagination.Shared", "IronBug.Pagination.Shared\IronBug.Pagination.Shared.shproj", "{942AB5AC-BC1D-4D43-B409-6622F6C4DBAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Pagination.Portable", "IronBug.Pagination.Portable\IronBug.Pagination.Portable.csproj", "{755A522F-2C91-42EB-A952-36B4E26D2452}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{3cc20403-a4eb-4257-8ddb-e90f4947d218}*SharedItemsImports = 4
+		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{755a522f-2c91-42eb-a952-36b4e26d2452}*SharedItemsImports = 5
+		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{942ab5ac-bc1d-4d43-b409-6622f6c4dbaa}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -69,6 +78,10 @@ Global
 		{75B48CA5-2E68-428C-9203-11D400F53B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75B48CA5-2E68-428C-9203-11D400F53B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75B48CA5-2E68-428C-9203-11D400F53B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{755A522F-2C91-42EB-A952-36B4E26D2452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755A522F-2C91-42EB-A952-36B4E26D2452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755A522F-2C91-42EB-A952-36B4E26D2452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755A522F-2C91-42EB-A952-36B4E26D2452}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

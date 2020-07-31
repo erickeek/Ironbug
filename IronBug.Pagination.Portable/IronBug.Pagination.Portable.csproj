@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>IronBug.Pagination</AssemblyName>
+    <RootNamespace>IronBug.Pagination</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems" Label="Shared" />
+
+</Project>
