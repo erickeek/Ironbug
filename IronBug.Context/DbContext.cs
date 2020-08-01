@@ -8,7 +8,7 @@ using System.Text;
 
 namespace IronBug.Context
 {
-    public abstract class DbContext : System.Data.Entity.DbContext
+    public abstract class DbContext : System.Data.Entity.DbContext, IDbContext
     {
         protected DbContext() { }
 

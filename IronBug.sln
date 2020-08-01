@@ -27,11 +27,22 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IronBug.Pagination.Shared",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Pagination.Portable", "IronBug.Pagination.Portable\IronBug.Pagination.Portable.csproj", "{755A522F-2C91-42EB-A952-36B4E26D2452}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Web.Portable", "IronBug.Web.Portable\IronBug.Web.Portable.csproj", "{3B983CC2-672F-4E08-9F92-D5FF079AB096}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IronBug.Helpers.Shared", "IronBug.Helpers.Shared\IronBug.Helpers.Shared.shproj", "{3CEE0746-689F-4F46-9945-BF0AE19454B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Helpers.Portable", "IronBug.Helpers.Portable\IronBug.Helpers.Portable.csproj", "{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Context.Portable", "IronBug.Context.Portable\IronBug.Context.Portable.csproj", "{D7EE8477-1F61-4C78-B35A-70929056A52E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{3cc20403-a4eb-4257-8ddb-e90f4947d218}*SharedItemsImports = 4
+		IronBug.Helpers.Shared\IronBug.Helpers.Shared.projitems*{3cee0746-689f-4f46-9945-bf0ae19454b7}*SharedItemsImports = 13
 		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{755a522f-2c91-42eb-a952-36b4e26d2452}*SharedItemsImports = 5
+		IronBug.Helpers.Shared\IronBug.Helpers.Shared.projitems*{79a9cd26-a3e9-4985-a92a-782a0be026d2}*SharedItemsImports = 4
 		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{942ab5ac-bc1d-4d43-b409-6622f6c4dbaa}*SharedItemsImports = 13
+		IronBug.Helpers.Shared\IronBug.Helpers.Shared.projitems*{f8a34167-5a98-45ce-9cbe-3c95b34d7b45}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +93,18 @@ Global
 		{755A522F-2C91-42EB-A952-36B4E26D2452}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{755A522F-2C91-42EB-A952-36B4E26D2452}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{755A522F-2C91-42EB-A952-36B4E26D2452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B983CC2-672F-4E08-9F92-D5FF079AB096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B983CC2-672F-4E08-9F92-D5FF079AB096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B983CC2-672F-4E08-9F92-D5FF079AB096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B983CC2-672F-4E08-9F92-D5FF079AB096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

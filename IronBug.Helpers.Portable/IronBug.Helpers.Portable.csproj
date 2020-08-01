@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>IronBug.Helpers</AssemblyName>
+    <RootNamespace>IronBug.Helpers</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\IronBug.Helpers.Shared\IronBug.Helpers.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
