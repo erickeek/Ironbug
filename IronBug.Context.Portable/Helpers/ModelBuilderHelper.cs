@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Linq;
 
 namespace IronBug.Context.Helpers
@@ -11,15 +9,11 @@ namespace IronBug.Context.Helpers
         {
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
-                var tableNameAnnotation = (ConventionAnnotation)entity.FindAnnotation(RelationalAnnotationNames.TableName);
-#pragma warning disable EF1001 // Internal EF Core API usage.
-                var configurationSource = tableNameAnnotation.GetConfigurationSource();
-#pragma warning restore EF1001 // Internal EF Core API usage.
-                if (configurationSource != ConfigurationSource.Convention)
-                {
+                if (entity.ClrType.Name.Contains("Dictionary"))
                     continue;
-                }
-                entity.SetTableName(entity.DisplayName());
+
+                var tableName = entity.DisplayName();
+                entity.SetTableName(tableName);
             }
         }
 

@@ -15,11 +15,11 @@ namespace IronBug.Helpers.Shared
 
             yield return ex.Message;
 
-            IEnumerable<Exception> innerExceptions = Enumerable.Empty<Exception>();
+            var innerExceptions = Enumerable.Empty<Exception>();
 
-            if (ex is AggregateException && (ex as AggregateException).InnerExceptions.Any())
+            if (ex is AggregateException exception && exception.InnerExceptions.Any())
             {
-                innerExceptions = (ex as AggregateException).InnerExceptions;
+                innerExceptions = exception.InnerExceptions;
             }
             else if (ex.InnerException != null)
             {
@@ -28,7 +28,7 @@ namespace IronBug.Helpers.Shared
 
             foreach (var innerEx in innerExceptions)
             {
-                foreach (string msg in innerEx.Messages())
+                foreach (var msg in innerEx.Messages())
                 {
                     yield return msg;
                 }

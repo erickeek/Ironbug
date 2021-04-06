@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace IronBug.Context.Helpers
 {
@@ -11,9 +12,15 @@ namespace IronBug.Context.Helpers
             var context = dbset.GetDbContext();
 
             if (entity.Id == 0)
-                context.Add(entity);
+                context.Set<IEntity>().Add(entity);
             else
-                context.Update(entity);
+            {
+                context.Entry(entity).State = EntityState.Detached;
+                context.Set<IEntity>().Update(entity);
+
+                //EntityEntry tracking = context.ChangeTracker.Entries<IEntity>();
+                //tracking.State = EntityState.Modified;
+            }
         }
 
         private static Microsoft.EntityFrameworkCore.DbContext GetDbContext<T>(this DbSet<T> dbSet) where T : class
