@@ -25,15 +25,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Web.Bootstrap", "Ir
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IronBug.Pagination.Shared", "IronBug.Pagination.Shared\IronBug.Pagination.Shared.shproj", "{942AB5AC-BC1D-4D43-B409-6622F6C4DBAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Pagination.Portable", "IronBug.Pagination.Portable\IronBug.Pagination.Portable.csproj", "{755A522F-2C91-42EB-A952-36B4E26D2452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IronBug.Pagination.Portable", "IronBug.Pagination.Portable\IronBug.Pagination.Portable.csproj", "{755A522F-2C91-42EB-A952-36B4E26D2452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Web.Portable", "IronBug.Web.Portable\IronBug.Web.Portable.csproj", "{3B983CC2-672F-4E08-9F92-D5FF079AB096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IronBug.Web.Portable", "IronBug.Web.Portable\IronBug.Web.Portable.csproj", "{3B983CC2-672F-4E08-9F92-D5FF079AB096}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IronBug.Helpers.Shared", "IronBug.Helpers.Shared\IronBug.Helpers.Shared.shproj", "{3CEE0746-689F-4F46-9945-BF0AE19454B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Helpers.Portable", "IronBug.Helpers.Portable\IronBug.Helpers.Portable.csproj", "{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IronBug.Helpers.Portable", "IronBug.Helpers.Portable\IronBug.Helpers.Portable.csproj", "{F8A34167-5A98-45CE-9CBE-3C95B34D7B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Context.Portable", "IronBug.Context.Portable\IronBug.Context.Portable.csproj", "{D7EE8477-1F61-4C78-B35A-70929056A52E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IronBug.Context.Portable", "IronBug.Context.Portable\IronBug.Context.Portable.csproj", "{D7EE8477-1F61-4C78-B35A-70929056A52E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Mail", "IronBug.Mail\IronBug.Mail.csproj", "{B94DEE94-EB57-459C-9E48-44E2156E7E45}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -105,6 +107,10 @@ Global
 		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7EE8477-1F61-4C78-B35A-70929056A52E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B94DEE94-EB57-459C-9E48-44E2156E7E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B94DEE94-EB57-459C-9E48-44E2156E7E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B94DEE94-EB57-459C-9E48-44E2156E7E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B94DEE94-EB57-459C-9E48-44E2156E7E45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

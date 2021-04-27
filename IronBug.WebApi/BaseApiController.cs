@@ -1,6 +1,7 @@
 ﻿using AutoMapper.QueryableExtensions;
 using IronBug.Mappers;
 using IronBug.Pagination;
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -36,6 +37,26 @@ namespace IronBug.WebApi
                 return (TCollection)query.Map().To<IEnumerable<T>>();
 
             return (TCollection)query.ProjectTo<T>(AutoMapperService.Instance.Mapper.ConfigurationProvider);
+        }
+
+        protected IHttpActionResult Success(string message = null, object data = null)
+        {
+            return Ok(new JsonData(true, message) { Data = data });
+        }
+
+        protected IHttpActionResult Success(object data)
+        {
+            return Ok(new JsonData(data) { Status = true });
+        }
+
+        protected IHttpActionResult Error(string message)
+        {
+            return Ok(new JsonData(false, message));
+        }
+
+        protected IHttpActionResult Error(Exception e)
+        {
+            return BadRequest(e.Message);
         }
     }
 }
