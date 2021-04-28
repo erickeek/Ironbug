@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="BaseApiController.cs" />
+    <Compile Include="CustomDirectRouteProvider.cs" />
     <Compile Include="JsonData.cs" />
     <Compile Include="JsonUtilController.cs" />
     <Compile Include="Mapping\DomainToViewModelMappingProfile.cs" />

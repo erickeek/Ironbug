@@ -9,23 +9,19 @@ namespace IronBug.Web
 {
     public class SessionData<T> where T : class
     {
-        private readonly JsonSerializerSettings _settings = new JsonSerializerSettings
-        {
-            TypeNameHandling = TypeNameHandling.Objects
-        };
-
         public SessionData(string key)
         {
             Key = key;
         }
 
         public string Key { get; }
+
         public T Value
         {
             get
             {
                 var value = HttpContext.Current.Request.GetOwinContext().Authentication.User.GetClaimValue(Key);
-                return value == null ? null : JsonConvert.DeserializeObject<T>(value, _settings);
+                return value == null ? null : JsonConvert.DeserializeObject<T>(value);
             }
             set
             {
@@ -39,7 +35,7 @@ namespace IronBug.Web
                     return;
                 }
 
-                user.AddUpdateClaim(Key, JsonConvert.SerializeObject(value, _settings));
+                user.AddUpdateClaim(Key, JsonConvert.SerializeObject(value));
             }
         }
     }
