@@ -12,7 +12,7 @@ var context = new YourContext();
 context.Truncate<YourTable>();
 ```
 
-### BulkInert
+### BulkInsert
 
 Insert batch data
 
