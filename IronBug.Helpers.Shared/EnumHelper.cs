@@ -39,7 +39,7 @@ namespace IronBug.Helpers
                 {
                     Value = (int)e,
                     Name = e.ToString(),
-                    DisplayName = ((TEnum)e).DisplayName()
+                    Display = ((TEnum)e).DisplayName()
                 });
             }
 
