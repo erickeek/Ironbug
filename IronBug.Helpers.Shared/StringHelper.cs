@@ -2,11 +2,14 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace IronBug.Helpers
 {
     public static class StringHelper
     {
+        private static readonly Regex RegexNumberOnly = new Regex(@"[^\d]");
+        
         public static string Truncate(this string input, int length, bool concatWithReticences = true)
         {
             if (input == null)
@@ -71,5 +74,17 @@ namespace IronBug.Helpers
         {
             return input.Replace("\r\n", "<br />").Replace("\n", "<br />");
         }
+        
+        public static string ToBase64(this string s)
+        {
+            var buffer = Encoding.UTF8.GetBytes(s);
+            return Convert.ToBase64String(buffer);
+        }
+
+        public static string OnlyNumbers(this string text)
+        {
+            return RegexNumberOnly.Replace(text, "");
+        }
+                
     }
 }
