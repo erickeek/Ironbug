@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBug.Mail", "IronBug.Mai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBugCore.Security", "IronBugCore.Security\IronBugCore.Security.csproj", "{46CDBE2E-4DD2-477B-A365-0BF7A2C2F244}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronBugCore.Web", "IronBugCore.Web\IronBugCore.Web.csproj", "{228154C6-1453-406B-BDDD-79254A57AC8B}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		IronBug.Pagination.Shared\IronBug.Pagination.Shared.projitems*{3cc20403-a4eb-4257-8ddb-e90f4947d218}*SharedItemsImports = 4
@@ -111,6 +113,10 @@ Global
 		{46CDBE2E-4DD2-477B-A365-0BF7A2C2F244}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46CDBE2E-4DD2-477B-A365-0BF7A2C2F244}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46CDBE2E-4DD2-477B-A365-0BF7A2C2F244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{228154C6-1453-406B-BDDD-79254A57AC8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228154C6-1453-406B-BDDD-79254A57AC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228154C6-1453-406B-BDDD-79254A57AC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228154C6-1453-406B-BDDD-79254A57AC8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
