@@ -33,24 +33,24 @@ namespace IronBug.Helpers
             var json = new Dictionary<string, object>();
 
             var enums = new List<object>();
+            var names = new Dictionary<int, string>();
+
             foreach (var e in Enum.GetValues(typeof(TEnum)))
             {
+                var value = (int)e;
+                var displayName = ((TEnum)e).DisplayName();
+
                 enums.Add(new
                 {
-                    Value = (int)e,
+                    Value = value,
                     Name = e.ToString(),
-                    Display = ((TEnum)e).DisplayName()
+                    Display = displayName
                 });
+
+                names.Add(value, displayName);
             }
 
             json.Add("enums", enums.ToArray());
-
-            var names = new Dictionary<string, object>();
-            foreach (var e in Enum.GetValues(typeof(TEnum)))
-            {
-                names.Add(((int)e).ToString(), e.ToString());
-            }
-
             json.Add("names", names);
 
             foreach (var e in Enum.GetValues(typeof(TEnum)))
