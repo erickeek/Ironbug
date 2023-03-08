@@ -87,5 +87,10 @@ namespace IronBug.Helpers
         {
             return !date.HasValue ? string.Empty : date.Value.ToShortDateString();
         }
+
+        public static DateTime HorarioDeBrasilia(this DateTime data)
+        {
+            return TimeZoneInfo.ConvertTime(data, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
+        }
     }
 }

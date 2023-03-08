@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.0</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>IronBug</Authors>
+        <Description>IronBug Pagination offers easy control over paged results from IQueryable sources.</Description>
+        <PackageProjectUrl>https://github.com/erickeek/IronBug</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/erickeek/IronBug/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageIcon>icon.png</PackageIcon>
+        <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
+        <PackageTags>C#, EntityFramework, Uti</PackageTags>
+        <PackageReleaseNotes>Use record to QueryFilter</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="icon.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+</Project>

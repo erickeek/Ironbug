@@ -16,6 +16,7 @@ namespace IronBug.Helpers.EnumerableComponents
         {
             return Equals(_comparer(x), _comparer(y));
         }
+
         public int GetHashCode(T obj)
         {
             return _comparer(obj).GetHashCode();
