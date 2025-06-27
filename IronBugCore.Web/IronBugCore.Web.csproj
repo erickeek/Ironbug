@@ -9,17 +9,13 @@
         <PackageIcon>icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
         <PackageTags>C# Util</PackageTags>
+        <LangVersion>default</LangVersion>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="icon.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-      </None>
     </ItemGroup>
 
 </Project>

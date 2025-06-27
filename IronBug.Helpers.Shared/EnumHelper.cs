@@ -16,6 +16,9 @@ namespace IronBug.Helpers
         {
             var type = value.GetType();
             var name = Enum.GetName(type, value);
+            if (name == null)
+                return null;
+
             return type.GetField(name)
                 .GetCustomAttributes(false)
                 .OfType<TAttribute>()
@@ -25,7 +28,7 @@ namespace IronBug.Helpers
         public static string DisplayName(this Enum value)
         {
             var attribute = value.Attribute<DisplayAttribute>();
-            return attribute != null ? attribute.Name : value.ToString();
+            return attribute?.Name ?? value.ToString();
         }
 
         public static object ToViewModel<TEnum>() where TEnum : Enum

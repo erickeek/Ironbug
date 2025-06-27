@@ -9,8 +9,8 @@ namespace IronBug.Helpers
     public static class StringHelper
     {
         private static readonly Regex RegexNumberOnly = new Regex(@"[^\d]");
-        
-        public static string Truncate(this string input, int length, bool concatWithReticences = true)
+
+        public static string Truncate(this string input, int length, bool concatWithEllipses = true)
         {
             if (input == null)
                 return string.Empty;
@@ -20,7 +20,7 @@ namespace IronBug.Helpers
 
             input = input.Substring(0, length);
 
-            if (concatWithReticences)
+            if (concatWithEllipses)
                 input += "...";
 
             return input;
@@ -67,6 +67,7 @@ namespace IronBug.Helpers
             {
                 stringBuilder.Append(ch);
             }
+
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
@@ -74,7 +75,7 @@ namespace IronBug.Helpers
         {
             return input.Replace("\r\n", "<br />").Replace("\n", "<br />");
         }
-        
+
         public static string ToBase64(this string s)
         {
             var buffer = Encoding.UTF8.GetBytes(s);
@@ -85,6 +86,5 @@ namespace IronBug.Helpers
         {
             return RegexNumberOnly.Replace(text, "");
         }
-                
     }
 }

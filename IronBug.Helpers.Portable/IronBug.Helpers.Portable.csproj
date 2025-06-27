@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>IronBug.Helpers</AssemblyName>
     <RootNamespace>IronBug.Helpers</RootNamespace>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
 
   <Import Project="..\IronBug.Helpers.Shared\IronBug.Helpers.Shared.projitems" Label="Shared" />

@@ -42,6 +42,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="icon.png" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\IronBug.Helpers.Shared\IronBug.Helpers.Shared.projitems" Label="Shared" />

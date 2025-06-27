@@ -1,49 +1,48 @@
 ﻿using System.Linq.Expressions;
 
-namespace IronBugCore.Pagination
+namespace IronBugCore.Pagination;
+
+public sealed class Sorter<T>
 {
-    public sealed class Sorter<T>
+    private delegate IQueryable<T> Filter(IQueryable<T> query, bool reverse);
+
+    private readonly IDictionary<string, Filter> _expressions;
+
+    public Sorter()
     {
-        private delegate IQueryable<T> Filter(IQueryable<T> query, bool reverse);
+        _expressions = new Dictionary<string, Filter>();
+    }
 
-        private readonly IDictionary<string, Filter> _expressions;
+    public void AddPredicate<TKey>(string predicate, Expression<Func<T, TKey>> expression)
+    {
+        _expressions.Add(predicate, (query, reverse) => reverse ? query.OrderByDescending(expression) : query.OrderBy(expression));
+    }
 
-        public Sorter()
+    public void AddPredicate<TKey>(Expression<Func<T, TKey>> expression)
+    {
+        var predicate = "";
+        var member = (MemberExpression)expression.Body;
+        while (member != null)
         {
-            _expressions = new Dictionary<string, Filter>();
+            if (predicate != "")
+                predicate = $".{predicate}";
+
+            predicate = $"{member.Member.Name}{predicate}";
+
+            member = member.Expression as MemberExpression;
         }
 
-        public void AddPredicate<TKey>(string predicate, Expression<Func<T, TKey>> expression)
-        {
-            _expressions.Add(predicate, (query, reverse) => reverse ? query.OrderByDescending(expression) : query.OrderBy(expression));
-        }
+        AddPredicate(predicate, expression);
+    }
 
-        public void AddPredicate<TKey>(Expression<Func<T, TKey>> expression)
-        {
-            var predicate = "";
-            var member = (MemberExpression)expression.Body;
-            while (member != null)
-            {
-                if (predicate != "")
-                    predicate = $".{predicate}";
+    public IQueryable<T> Apply(IQueryable<T> query, string? predicate, bool reverse)
+    {
+        if (predicate == null)
+            return query;
 
-                predicate = $"{member.Member.Name}{predicate}";
+        if (!_expressions.ContainsKey(predicate))
+            predicate = _expressions.Keys.First();
 
-                member = member.Expression as MemberExpression;
-            }
-
-            AddPredicate(predicate, expression);
-        }
-
-        public IQueryable<T> Apply(IQueryable<T> query, string? predicate, bool reverse)
-        {
-            if (predicate == null)
-                return query;
-
-            if (!_expressions.ContainsKey(predicate))
-                predicate = _expressions.Keys.First();
-
-            return _expressions[predicate](query, reverse);
-        }
+        return _expressions[predicate](query, reverse);
     }
 }
