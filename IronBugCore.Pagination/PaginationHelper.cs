@@ -12,6 +12,6 @@ public static class PaginationHelper
         var pagedType = typeof(PagedQuery<>).MakeGenericType(query.ElementType);
         var pagedQuery = Activator.CreateInstance(pagedType, query, filter);
 
-        return (IPagedQuery)pagedQuery;
+        return (IPagedQuery)pagedQuery!;
     }
 }
