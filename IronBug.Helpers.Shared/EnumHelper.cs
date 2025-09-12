@@ -25,8 +25,13 @@ namespace IronBug.Helpers
                 .SingleOrDefault();
         }
 
-        public static string DisplayName(this Enum value)
+        public static string DisplayName(this Enum value, string defaultValue = "Não definido")
         {
+            var type = value.GetType();
+
+            if (!Enum.IsDefined(type, value))
+                return defaultValue;
+
             var attribute = value.Attribute<DisplayAttribute>();
             return attribute?.Name ?? value.ToString();
         }
