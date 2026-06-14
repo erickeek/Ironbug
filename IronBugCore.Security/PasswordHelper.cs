@@ -1,11 +1,13 @@
-﻿using System.Text;
+using System.Security.Cryptography;
+using System.Text;
 
-namespace IronBugCore.Security;
+namespace IronbugCore.Security;
 
 public static class PasswordHelper
 {
-    private static readonly PasswordHasher PasswordHasher = new PasswordHasher();
-    private static readonly Random Random = new Random();
+    private static readonly PasswordHasher PasswordHasher = new();
+    private static readonly char[] Vowels = "aeiou".ToCharArray();
+    private static readonly char[] Consonants = "bcdfghjklmnpqrstvwxyz".ToCharArray();
 
     public static string Encrypt(this string password)
     {
@@ -19,25 +21,23 @@ public static class PasswordHelper
 
     public static string MakePronounceablePassword(int length)
     {
-        var aToZ = Enumerable.Range('a', 'z' - 'a' + 1).Select(i => (char)i).ToArray();
-        var vowels = "aeiou".ToCharArray();
-        var consonant = aToZ.Where(w => !vowels.Contains(w)).ToArray();
-
         if (length < 3)
-            throw new Exception("Poucos caracteres para uma senha");
+            throw new ArgumentException("Poucos caracteres para uma senha", nameof(length));
 
-        var password = new StringBuilder();
+        var password = new StringBuilder(length);
         var previousCharacterIsAConsonant = false;
+
         for (var i = 0; i < length - 1; i++)
         {
-            if (Random.Next(0, 1) == 0 && !previousCharacterIsAConsonant)
+            // Using 50/50 chance for consonant if previous was not consonant
+            if (GetRandomInt(0, 2) == 0 && !previousCharacterIsAConsonant)
             {
-                password.Append(consonant[Random.Next(0, consonant.Length - 1)]);
+                password.Append(Consonants[GetRandomInt(0, Consonants.Length)]);
                 previousCharacterIsAConsonant = true;
             }
             else
             {
-                password.Append(vowels[Random.Next(0, vowels.Length - 1)]);
+                password.Append(Vowels[GetRandomInt(0, Vowels.Length)]);
                 previousCharacterIsAConsonant = false;
             }
         }
@@ -45,38 +45,31 @@ public static class PasswordHelper
         return $"{password}{MakeNumericPassword(1)}";
     }
 
-    public static string MakeStrongPassword()
+    public static string MakeStrongPassword(int length = 12)
     {
-        var letters = Enumerable.Range('a', 'z' - 'a' + 1).Select(i => (char)i).ToArray();
-        var numbers = Enumerable.Range('0', '9' - '0' + 1).Select(i => (char)i).ToArray();
-        var specialCharacters = "!@#$%¨&*()".ToCharArray();
-
-        var password = new StringBuilder();
-        for (var i = 0; i < 3; i++)
+        const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+        return string.Create(length, chars, (span, alphabet) =>
         {
-            password.Append(numbers[Random.Next(0, numbers.Length - 1)]);
-        }
-
-        for (var i = 0; i < 5; i++)
-        {
-            password.Append(letters[Random.Next(0, letters.Length - 1)]);
-        }
-
-        for (var i = 0; i < 3; i++)
-        {
-            password.Append(specialCharacters[Random.Next(0, specialCharacters.Length - 1)]);
-        }
-
-        return password.ToString();
+            for (var i = 0; i < span.Length; i++)
+            {
+                span[i] = alphabet[RandomNumberGenerator.GetInt32(0, alphabet.Length)];
+            }
+        });
     }
 
     public static string MakeNumericPassword(int length)
     {
-        var password = new StringBuilder();
-        for (var i = 0; i < length; i++)
+        return string.Create<object?>(length, null, (span, _) =>
         {
-            password.Append(Random.Next(0, 9));
-        }
-        return password.ToString();
+            for (var i = 0; i < span.Length; i++)
+            {
+                span[i] = (char)('0' + RandomNumberGenerator.GetInt32(0, 10));
+            }
+        });
+    }
+
+    private static int GetRandomInt(int min, int max)
+    {
+        return RandomNumberGenerator.GetInt32(min, max);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace IronBugCore.Pagination;
+﻿namespace IronbugCore.Pagination;
 
 public record QueryFilter
 {

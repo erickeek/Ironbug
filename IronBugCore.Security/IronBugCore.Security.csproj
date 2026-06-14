@@ -10,6 +10,8 @@
     <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
     <PackageTags>.net core;security;password</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

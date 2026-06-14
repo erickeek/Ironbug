@@ -1,4 +1,4 @@
-﻿namespace IronBugCore.Pagination;
+namespace IronbugCore.Pagination;
 
 public static class PaginationHelper
 {
@@ -7,11 +7,11 @@ public static class PaginationHelper
         return new PagedQuery<T>(query, filter);
     }
 
-    internal static IPagedQuery Paginate(this IQueryable query, QueryFilter filter)
+    public static async Task<PagedQuery<T>> PaginateAsync<T>(this IQueryable<T> query, QueryFilter filter, CancellationToken cancellationToken = default)
     {
-        var pagedType = typeof(PagedQuery<>).MakeGenericType(query.ElementType);
-        var pagedQuery = Activator.CreateInstance(pagedType, query, filter);
+        var pagedQuery = new PagedQuery<T>(query, filter);
+        await pagedQuery.GetTotalAsync(cancellationToken);
 
-        return (IPagedQuery)pagedQuery!;
+        return pagedQuery;
     }
 }
