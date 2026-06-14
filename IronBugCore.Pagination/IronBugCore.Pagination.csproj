@@ -4,7 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.1</Version>
+        <Version>2.0.0</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Ironbug</Authors>
         <Description>IronBug Pagination offers easy control over paged results from IQueryable sources.</Description>
@@ -12,13 +12,9 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
-        <PackageTags>C#, EntityFramework, Uti</PackageTags>
-        <PackageReleaseNotes>Use record to QueryFilter</PackageReleaseNotes>
+        <PackageTags>C#, Pagination, IQueryable, Util</PackageTags>
+        <PackageReleaseNotes>Removida a dependência de Microsoft.EntityFrameworkCore. A paginação opera sobre IQueryable puro; o modo assíncrono usa o provider do consumidor (ex.: EF Core) via IAsyncEnumerable/IAsyncQueryProvider, com fallback síncrono.</PackageReleaseNotes>
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.14" />
-    </ItemGroup>
 
     <ItemGroup>
         <None Include="icon.png" Pack="true" PackagePath=""/>

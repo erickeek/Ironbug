@@ -1,6 +1,5 @@
 <Solution>
   <Project Path="IronbugCore.Common/IronbugCore.Common.csproj" />
-  <Project Path="IronbugCore.Context/IronbugCore.Context.csproj" />
   <Project Path="IronbugCore.Helpers/IronbugCore.Helpers.csproj" />
   <Project Path="IronbugCore.Pagination/IronbugCore.Pagination.csproj" />
   <Project Path="IronbugCore.Security/IronbugCore.Security.csproj" />

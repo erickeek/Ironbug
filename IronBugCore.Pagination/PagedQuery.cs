@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 
 namespace IronbugCore.Pagination;
 
@@ -51,7 +50,7 @@ public sealed class PagedQuery<T> : IQueryable<T>, IPagedQuery, IAsyncEnumerable
         if (_total.HasValue)
             return _total.Value;
 
-        _total = await _query.CountAsync(cancellationToken);
+        _total = await AsyncQueryableExecutor.CountAsync(_query, cancellationToken);
         return _total.Value;
     }
 
@@ -62,7 +61,7 @@ public sealed class PagedQuery<T> : IQueryable<T>, IPagedQuery, IAsyncEnumerable
     public async Task<PagedResult<T>> ToPagedResultAsync(CancellationToken cancellationToken = default)
     {
         var total = await GetTotalAsync(cancellationToken);
-        var items = await NewQuery.ToListAsync(cancellationToken);
+        var items = await AsyncQueryableExecutor.ToListAsync(NewQuery, cancellationToken);
         return BuildResult(items, total);
     }
 
@@ -74,7 +73,7 @@ public sealed class PagedQuery<T> : IQueryable<T>, IPagedQuery, IAsyncEnumerable
         Expression<Func<T, TResult>> selector, CancellationToken cancellationToken = default)
     {
         var total = await GetTotalAsync(cancellationToken);
-        var items = await NewQuery.Select(selector).ToListAsync(cancellationToken);
+        var items = await AsyncQueryableExecutor.ToListAsync(NewQuery.Select(selector), cancellationToken);
         return new PagedResult<TResult>
         {
             Items = items,
