@@ -5,8 +5,7 @@ namespace IronbugCore.Helpers;
 
 public static class EnumHelper
 {
-    private static readonly ConcurrentDictionary<(Type EnumType, string Name, Type AttributeType), object?> AttributeCache =
-        new ConcurrentDictionary<(Type, string, Type), object?>();
+    private static readonly ConcurrentDictionary<(Type EnumType, string Name, Type AttributeType), object?> AttributeCache = new();
 
     public static Enum GetValue(this int value, Type enumType)
     {
@@ -48,7 +47,7 @@ public static class EnumHelper
 
         public static TAttribute? Get(TEnum value)
         {
-            return Map.TryGetValue(value, out var attribute) ? attribute : null;
+            return CollectionExtensions.GetValueOrDefault(Map, value);
         }
 
         private static Dictionary<TEnum, TAttribute?> Build()
@@ -56,7 +55,7 @@ public static class EnumHelper
             var enumType = typeof(TEnum);
             var map = new Dictionary<TEnum, TAttribute?>();
 
-            foreach (TEnum value in (TEnum[])Enum.GetValues(enumType))
+            foreach (var value in (TEnum[])Enum.GetValues(enumType))
             {
                 map[value] = enumType.GetField(value.ToString())
                     ?.GetCustomAttributes(typeof(TAttribute), false)
@@ -79,36 +78,90 @@ public static class EnumHelper
         return attribute?.Name ?? value.ToString();
     }
 
+    /// <summary>
+    /// Objeto serializável de um enum no formato legado: cada nome→valor na raiz, mais
+    /// "enums" (array de { Value, Name, Display }) e "names" (valor→display).
+    /// O trabalho de reflexão é cacheado por <typeparamref name="TEnum"/>.
+    /// </summary>
     public static object ToViewModel<TEnum>() where TEnum : struct, Enum
     {
-        var enumType = typeof(TEnum);
-        var json = new Dictionary<string, object>();
-        var enums = new List<object>();
-        var names = new Dictionary<int, string>();
+        return Build(EnumEntryCache<TEnum>.Entries);
+    }
 
-        foreach (var e in Enum.GetValues(enumType))
+    /// <summary>
+    /// Como <see cref="ToViewModel{TEnum}()"/>, omitindo os valores informados em <paramref name="exclude"/>.
+    /// </summary>
+    public static object ToViewModel<TEnum>(params TEnum[] exclude) where TEnum : struct, Enum
+    {
+        if (exclude.Length == 0)
+            return Build(EnumEntryCache<TEnum>.Entries);
+
+        var excluded = new HashSet<TEnum>(exclude);
+        return BuildFiltered<TEnum>(value => !excluded.Contains(value));
+    }
+
+    /// <summary>
+    /// Como <see cref="ToViewModel{TEnum}()"/>, mantendo apenas os valores em que <paramref name="predicate"/> retorna true.
+    /// </summary>
+    public static object ToViewModel<TEnum>(Func<TEnum, bool> predicate) where TEnum : struct, Enum
+    {
+        return BuildFiltered(predicate);
+    }
+
+    private static object BuildFiltered<TEnum>(Func<TEnum, bool> predicate) where TEnum : struct, Enum
+    {
+        var values = EnumEntryCache<TEnum>.Values;
+        var entries = EnumEntryCache<TEnum>.Entries;
+
+        var filtered = new List<EnumEntry>(entries.Count);
+        for (var i = 0; i < values.Length; i++)
         {
-            var typedEnum = (TEnum)e;
-            var value = Convert.ToInt32(e);
-            var name = e.ToString()!;
-            // Valores vêm de GetValues (sempre definidos), então usamos o fast path
-            // direto — equivalente a DisplayName() sem o Enum.IsDefined/boxing.
-            var displayName = typedEnum.Attribute<TEnum, DisplayAttribute>()?.Name ?? name;
-
-            enums.Add(new
-            {
-                Value = value,
-                Name = name,
-                Display = displayName
-            });
-
-            names.Add(value, displayName);
-            json.Add(name, value);
+            if (predicate(values[i]))
+                filtered.Add(entries[i]);
         }
 
-        json.Add("enums", enums.ToArray());
-        json.Add("names", names);
+        return Build(filtered);
+    }
 
+    private static Dictionary<string, object> Build(IReadOnlyList<EnumEntry> entries)
+    {
+        var json = new Dictionary<string, object>(entries.Count + 2);
+        var enums = new object[entries.Count];
+        var names = new Dictionary<int, string>(entries.Count);
+
+        for (var i = 0; i < entries.Count; i++)
+        {
+            var entry = entries[i];
+            enums[i] = new { entry.Value, entry.Name, entry.Display };
+            names[entry.Value] = entry.Display;
+            json[entry.Name] = entry.Value;
+        }
+
+        json["enums"] = enums;
+        json["names"] = names;
         return json;
+    }
+
+    private readonly record struct EnumEntry(int Value, string Name, string Display);
+
+    private static class EnumEntryCache<TEnum> where TEnum : struct, Enum
+    {
+        public static readonly TEnum[] Values = Enum.GetValues<TEnum>();
+        public static readonly IReadOnlyList<EnumEntry> Entries = Build();
+
+        private static EnumEntry[] Build()
+        {
+            var entries = new EnumEntry[Values.Length];
+
+            for (var i = 0; i < Values.Length; i++)
+            {
+                var value = Values[i];
+                var name = value.ToString();
+                var display = value.Attribute<TEnum, DisplayAttribute>()?.Name ?? name;
+                entries[i] = new EnumEntry(Convert.ToInt32(value), name, display);
+            }
+
+            return entries;
+        }
     }
 }
