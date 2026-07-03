@@ -67,6 +67,12 @@ public static class EnumHelper
         }
     }
 
+    public static string DisplayName(this Enum value)
+    {
+        return value.DisplayName("Não definido");
+    }
+
+    // ReSharper disable once MethodOverloadWithOptionalParameter
     public static string DisplayName(this Enum value, string defaultValue = "Não definido")
     {
         var type = value.GetType();
