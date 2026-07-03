@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IronBugCore.Web.Helpers;
+namespace IronbugCore.Web.Helpers;
 
 public static class UrlHelper
 {

@@ -8,9 +8,10 @@
         <Description>Web project components</Description>
         <PackageIcon>icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>C# Util</PackageTags>
         <LangVersion>default</LangVersion>
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
     </PropertyGroup>
 
     <ItemGroup>

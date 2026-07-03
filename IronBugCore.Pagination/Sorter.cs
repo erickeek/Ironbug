@@ -1,17 +1,12 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 
-namespace IronBugCore.Pagination;
+namespace IronbugCore.Pagination;
 
 public sealed class Sorter<T>
 {
     private delegate IQueryable<T> Filter(IQueryable<T> query, bool reverse);
 
-    private readonly IDictionary<string, Filter> _expressions;
-
-    public Sorter()
-    {
-        _expressions = new Dictionary<string, Filter>();
-    }
+    private readonly Dictionary<string, Filter> _expressions = new();
 
     public void AddPredicate<TKey>(string predicate, Expression<Func<T, TKey>> expression)
     {
@@ -40,9 +35,13 @@ public sealed class Sorter<T>
         if (predicate == null)
             return query;
 
-        if (!_expressions.ContainsKey(predicate))
-            predicate = _expressions.Keys.First();
+        if (!_expressions.TryGetValue(predicate, out var filter))
+        {
+            var fallback = _expressions.Keys.FirstOrDefault();
+            if (fallback == null || !_expressions.TryGetValue(fallback, out filter))
+                return query;
+        }
 
-        return _expressions[predicate](query, reverse);
+        return filter(query, reverse);
     }
 }

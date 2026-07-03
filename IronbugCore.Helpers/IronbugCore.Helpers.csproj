@@ -4,16 +4,15 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>2.0.0</Version>
+        <Version>1.1.1</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Ironbug</Authors>
-        <Description>IronBug Pagination offers easy control over paged results from IQueryable sources.</Description>
+        <Description>Ironbug Helpers — extension methods and utilities for everyday .NET development.</Description>
         <PackageProjectUrl>https://github.com/erickeek/IronBug</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>icon.png</PackageIcon>
-        <RepositoryUrl>https://github.com/erickeek/IronBug</RepositoryUrl>
-        <PackageTags>C#, Pagination, IQueryable, Util</PackageTags>
-        <PackageReleaseNotes>Removida a dependência de Microsoft.EntityFrameworkCore. A paginação opera sobre IQueryable puro; o modo assíncrono usa o provider do consumidor (ex.: EF Core) via IAsyncEnumerable/IAsyncQueryProvider, com fallback síncrono.</PackageReleaseNotes>
+        <PackageTags>C#, Helpers, Util, Extensions</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

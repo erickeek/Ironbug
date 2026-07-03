@@ -1,8 +1,7 @@
-﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace IronBugCore.Security;
+namespace IronbugCore.Security;
 
 public interface IPasswordHasher
 {
@@ -12,9 +11,11 @@ public interface IPasswordHasher
 
 public sealed class PasswordHasher : IPasswordHasher
 {
-    private static byte Version => 1;
-    private static int SaltSize => 128 / 8; // 128 bits
-    private HashAlgorithmName HashAlgorithmName { get; } = HashAlgorithmName.SHA256;
+    private const byte Version1 = 1;
+    private const byte Version2 = 2;
+    private const int SaltSize = 16; // 128 bits
+    private const int PBKDF2Iterations = 600_000;
+    private static HashAlgorithmName PBKDF2HashAlgorithm => HashAlgorithmName.SHA256;
 
     public string HashPassword(string password)
     {
@@ -22,12 +23,11 @@ public sealed class PasswordHasher : IPasswordHasher
             throw new ArgumentNullException(nameof(password));
 
         var salt = RandomNumberGenerator.GetBytes(SaltSize);
-        var hash = HashPasswordWithSalt(password, salt);
-
-        var inArray = new byte[1 + SaltSize + hash.Length];
-        inArray[0] = Version;
+        var inArray = new byte[1 + SaltSize + 32]; // 32 bytes for SHA256 hash
+        inArray[0] = Version2;
         Buffer.BlockCopy(salt, 0, inArray, 1, SaltSize);
-        Buffer.BlockCopy(hash, 0, inArray, 1 + SaltSize, hash.Length);
+
+        KeyDerivation(password, salt, inArray.AsSpan(1 + SaltSize));
 
         return Convert.ToBase64String(inArray);
     }
@@ -40,49 +40,56 @@ public sealed class PasswordHasher : IPasswordHasher
         if (hashedPassword == null)
             return false;
 
-        Span<byte> numArray = Convert.FromBase64String(hashedPassword);
+        byte[] numArray;
+        try
+        {
+            numArray = Convert.FromBase64String(hashedPassword);
+        }
+        catch
+        {
+            return false;
+        }
+
         if (numArray.Length < 1)
             return false;
 
         var version = numArray[0];
-        if (version > Version)
-            return false;
 
-        var salt = numArray.Slice(1, SaltSize).ToArray();
-        var bytes = numArray.Slice(1 + SaltSize).ToArray();
+        if (version == Version2)
+        {
+            if (numArray.Length < 1 + SaltSize + 32) return false;
+            var salt = numArray.AsSpan(1, SaltSize);
+            var hash = numArray.AsSpan(1 + SaltSize, 32);
 
-        var hash = HashPasswordWithSalt(password, salt);
+            Span<byte> expectedHash = stackalloc byte[32];
+            KeyDerivation(password, salt, expectedHash);
 
-        return FixedTimeEquals(hash, bytes);
+            return CryptographicOperations.FixedTimeEquals(expectedHash, hash);
+        }
+
+        if (version == Version1)
+        {
+            if (numArray.Length < 1 + SaltSize) return false;
+            var salt = numArray.AsSpan(1, SaltSize);
+            var bytes = numArray.AsSpan(1 + SaltSize);
+            var hash = HashPasswordV1(password, salt.ToArray());
+            return CryptographicOperations.FixedTimeEquals(hash, bytes);
+        }
+
+        return false;
     }
 
-    private byte[] HashPasswordWithSalt(string password, byte[] salt)
+    private static void KeyDerivation(string password, ReadOnlySpan<byte> salt, Span<byte> output)
     {
-        using var hashAlgorithm = HashAlgorithm.Create(HashAlgorithmName.Name);
+        Rfc2898DeriveBytes.Pbkdf2(password, salt, output, PBKDF2Iterations, PBKDF2HashAlgorithm);
+    }
+
+    private static byte[] HashPasswordV1(string password, byte[] salt)
+    {
+        using var hashAlgorithm = SHA256.Create();
         var input = Encoding.UTF8.GetBytes(password);
         hashAlgorithm.TransformBlock(salt, 0, salt.Length, salt, 0);
         hashAlgorithm.TransformFinalBlock(input, 0, input.Length);
-        var hash = hashAlgorithm.Hash;
-
-        return hash;
-    }
-
-    [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-    private static bool FixedTimeEquals(IReadOnlyList<byte> left, IReadOnlyList<byte> right)
-    {
-        if (left.Count != right.Count)
-        {
-            return false;
-        }
-
-        var length = left.Count;
-        var accum = 0;
-
-        for (var i = 0; i < length; i++)
-        {
-            accum |= left[i] - right[i];
-        }
-
-        return accum == 0;
+        return hashAlgorithm.Hash!;
     }
 }
